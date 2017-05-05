@@ -1,0 +1,17 @@
+# Ubuntu 16.04 didn't have the drivers required to open my exfat flash drive
+# just install stuff with this command and then re-insert flash drive
+
+$ sudo apt-get install exfat-fuse exfat-utils
+
+#That command should make it such that you plug and work.
+#if you need to manually mount though follwoing commands
+
+$ sudo mkdir /media/exfat
+$ sudo mount -t exfat /dev/sdxx /media/exfat
+
+#where /dev/sdxx could be /dev/sda1 or /dev/sda2, or so on.
+#
+#If you are not sure whether the exfat partition you are looking 
+#for is /dev/sda1 or /dev/sda2, then you could also run
+$ sudo lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL
+

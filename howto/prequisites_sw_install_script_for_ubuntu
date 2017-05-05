@@ -1,0 +1,55 @@
+#Python
+apt-get --yes --force-yes install python-pip
+apt-get --yes --force-yes install python-scapy
+apt-get --yes --force-yes install python-wxgtk2.8
+apt-get --yes --force-yes install python-serial
+pip install jsonpickle
+pip install pyx==0.12.1
+
+apt-get --yes --force-yes install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose
+
+#Java
+apt-get --yes --force-yes install openjdk-7-jre
+apt-get --yes --force-yes install openjdk-7-jdk
+apt-get --yes --force-yes install icedtea-plugin
+#ssh server
+apt-get --yes --force-yes install openssh-server
+
+#Scala install
+apt-get remove scala-library scala
+wget http://www.scala-lang.org/files/archive/scala-2.11.4.deb
+dpkg -i scala-2.11.4.deb
+apt-get update
+apt-get --yes --force-yes install scala
+wget http://dl.bintray.com/sbt/debian/sbt-0.13.6.deb
+dpkg -i sbt-0.13.6.deb
+apt-get update
+apt-get --yes --force-yes install sbt
+
+#GIT
+apt-get --yes --force-yes install git
+apt-get --yes --force-yes install gitk
+
+#Open Source Verilog simulators
+apt-get --yes --force-yes install verilog
+apt-get --yes --force-yes install gtkwave
+
+
+#Legup Requirements --Not installing clang as it might be user preference
+apt-get --yes --force-yes install tcl8.5-dev dejagnu expect texinfo build-essential liblpsolve55-dev libgmp3-dev automake libtool
+apt-get --yes --force-yes install libc6-dev-i386
+
+## My Personal Linux Tool Preferences 
+#Terminal
+apt-get --yes --force-yes install terminator
+#Gvim
+apt-get --yes --force-yes install vim-gnome
+#pdftk for splitting pdfs and converting to png
+apt-get --yes --force-yes install pdftk
+apt-get --yes --force-yes install imagemagick
+
+## Xilnx Tool Reqs
+ln -s /usr/bin/make /usr/bin/gmake
+apt-get --yes --force-yes install libstdc++6:i386
+apt-get --yes --force-yes install libgtk2.0-0:i386
+apt-get --yes --force-yes install dpkg-dev:i386

@@ -1,0 +1,18 @@
+#Needed some floatingPoint(fp) ALUs such as add, sub, mult and div
+#For this, used Quartus to make the IPs
+
+$source <fpga setup script>
+$Quartus
+
+Top Right: Select the right dev family (Used Stratix V)
+Under that there is a navigation tree with the IPs 
+go to arthemetic
+Selected FP_func... (it has options for specific ops later)
+pop-up: 
+	name
+	verilog
+	-next
+	select op
+
+Files should be generated
+

@@ -1,0 +1,39 @@
+#Slow downloads on ethernet. Needed to disable ipv6. 
+# from askubuntu
+
+
+You might want to disable it right from the boot. For this purpose, open /etc/default/grub with your favorite text editor with root access (maybe sudo gedit /etc/default/grub.
+
+In this file, find this line:
+
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+
+and change it to:
+
+GRUB_CMDLINE_LINUX_DEFAULT="ipv6.disable=1 quiet splash"
+
+Save the file and update grub by running:
+
+sudo update-grub
+
+
+# email from Bala
+Please disable ipv6 on all your machines. For linux you can follow below steps
+
+You can disable in your current session using the following commands
+
+sudo sysctl -w net.ipv6.conf.all.disable_ipv6=0
+
+sudo sysctl -w net.ipv6.conf.default.disable_ipv6=0
+
+Or you can also follow this page to disable ipv6 by default 
+https://support.purevpn.com/how-to-disable-ipv6-linuxubuntu
+
+Once you have disabled IPV6, you might have issue with X11 forwarding if you do SSH
+In this case please add the following line to /etc/ssh/sshd_config
+
+##X11 Forwarding through IPV4 and Not IPV6
+AddressFamily inet
+
+Then restart SSH daemon as follows
+sudo service ssh restart

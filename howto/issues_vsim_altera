@@ -1,0 +1,5 @@
+#running make unifiedVerilog threw a vsim error of missing ..linux_rh60/vsim
+Need to Install library:
+  sudo apt-get install libxft2 libxft2:i386 lib32ncurses5
+and also update vsim path in Makefile.conf (libBuild and local build)
+  /home/altera/15.0/modelsim_ase/linuxaloem/vsim

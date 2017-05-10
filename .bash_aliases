@@ -84,3 +84,8 @@ function sanitize() { chmod -R u=rwX,g=rX,o= "$@" ;}
 # put stuff in the the clipboard "somecmd | clipin"
 alias clipin='xclip -i -selection clipboard'
 
+#git for home dir to manage dot files. use "config" instead of "git" in home dir
+alias config='/usr/bin/git --git-dir=/home/vidhatre/.cfg/ --work-tree=/home/vidhatre'
+
+#Edit CDPATH for working project. Dont want to modify on defaul so alias 
+alias set_cd='export CDPATH=.:~:/home/vidhatre/projects/axstreamBE/GorillaPP/apps/sLinearRegression'

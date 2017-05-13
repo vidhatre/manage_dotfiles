@@ -33,7 +33,7 @@ alias xilinx_setup=". /home/Xilinx/13.4/ISE_DS/settings64.sh"
 alias fpath="readlink -f"
 
 #shortcuts to dirs
-alias be='cd ~/projects/axtreamBE/'
+alias be='cd ~/projects/axstreamBE/'
 alias bega='cd ~/projects/axstreamBE/GorillaPP/apps'
 alias riffa='cd ~/projects/axstreamRIFFA'
 

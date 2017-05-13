@@ -1,0 +1,13 @@
+#Issues and fixes encountered while doing make Unified verilog
+
+##Issue 1: 
+## ** Error: (vsim-3033) ../../lib/fp_add.v(16): Instantiation of 'fp_add_0002' failed. The design unit was not found.
+##Solution:
+Since we are using IP from altera. The auto generated .vo file, "fp_add.vo", defines
+module "fp_add" which should acutally be "fp_add_0002".
+To Fix: append the 0002 to module name in .vo file
+
+#Issue 2: # ** Error: (vsim-3063) ../../build/verilog/Top.v(4528): 
+#Port 'io_out_bits_a' not found in the connected module (10th connection).
+#Soln:
+the last part of the name "_a" refers to the variable name in the output type of the module i had "a" as the variable in the gorilla code. But in the verilog it was q. changed the "_q" to "_a". this fixed my problem

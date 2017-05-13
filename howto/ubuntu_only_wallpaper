@@ -1,0 +1,14 @@
+#So, my sytem randomly froze. I did a forcce restart and logged in,
+#I could only see my wallpaper and mouse. 
+#The first solution worked for me. Putting the second just in case its needed
+
+#1
+sudo apt-get update
+sudo apt-get install --reinstall ubuntu-desktop
+sudo apt-get install unity
+sudo shutdown -r now
+
+#2
+rm -rf ~/.config
+sudo shutdown -r now
+

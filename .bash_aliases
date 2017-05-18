@@ -88,4 +88,14 @@ alias clipin='xclip -i -selection clipboard'
 alias config='/usr/bin/git --git-dir=/home/vidhatre/.cfg/ --work-tree=/home/vidhatre'
 
 #Edit CDPATH for working project. Dont want to modify on defaul so alias 
-alias set_cd='export CDPATH=.:~:/home/vidhatre/projects/axstreamBE/GorillaPP/apps/sLinearRegression'
+#alias set_cd='export CDPATH=.:~:/home/vidhatre/projects/axstreamBE/GorillaPP/apps/sLinearRegression'
+function set_cd() { export CDPATH=.:~:$PWD; echo "export CDPATH=.:~:$PWD"; }
+function tst() { 
+  if [ $1 = "json" ] 
+  then 
+      echo "set_json";
+  elif [ $1 = "slr" ] 
+  then 
+      echo "set_slr";
+  fi 
+}

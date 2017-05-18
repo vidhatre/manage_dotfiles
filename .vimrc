@@ -109,6 +109,8 @@ Plug 'https://github.com/rhysd/vim-clang-format.git'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 " plugin for scala syntax highlighting
 Plug 'derekwyatt/vim-scala'
+"Vim multiple cursor
+Plug 'terryma/vim-multiple-cursors'
 call plug#end()
 
 set expandtab

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+mytitle="$1"
+echo -e '\033]2;'$mytitle'\007'
+

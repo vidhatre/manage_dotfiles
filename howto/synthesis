@@ -1,0 +1,26 @@
+1. ssh to balas machine, you need to go to an app directory
+   $ ssh halimede
+
+2. create an app directory and copy over src files + other files
+   $ cd <axstreamBE>/GoriallaPP/apps
+   $ mkdir <app name> OR $ scp ... <app name>
+
+3. in the app directory go to build
+   $ cd <app name>/build
+   $ make reflex
+
+4. A directory of same APP name will be created in the Riffa Repo go to the riffa repo
+   Output blurb from 3 should actually give you path to directory
+   $ cd <axstreamRIFFA>/apps/<app name>
+
+5. setup the env variables to run quartus. youll want to run:
+   $ source ~/altera_src_prime
+   i
+6. once quartus is open, open project and select prj/<app name>.qpf file
+
+7. you can now see the timing reports and FMAX
+   -Do not double click as it will restart synthesis. Left bottom pane expand the titles 
+    then right click and select
+
+
+

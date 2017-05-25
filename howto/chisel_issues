@@ -1,0 +1,6 @@
+1. When creating a register you MUST set resetVal = UFix(0,<size>)
+    If you dont set size chisel takes this to be a 1 bit register
+
+2. When refrencing a section of a bus using the syntax wire(m,n) 
+   m,n boundaries are inclusive so you must make sure to use (b+15,b+0)
+   for 16bits with offset b

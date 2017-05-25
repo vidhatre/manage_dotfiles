@@ -24,6 +24,7 @@ set show-all-if-ambiguous on
 
 #For Altera tools,  Quartus to work
 alias altera_setup="source ~/Altera_Licenses/bashrc_addon_altera_quartus"
+PATH=$PATH:/home/altera/15.0/modelsim_ase/bin
 
 #For Xilinx tools
 alias xilinx_setup=". /home/Xilinx/13.4/ISE_DS/settings64.sh"
@@ -93,9 +94,14 @@ function set_cd() { export CDPATH=.:~:$PWD; echo "export CDPATH=.:~:$PWD"; }
 function tst() { 
   if [ $1 = "json" ] 
   then 
-      echo "set_json";
+      echo "set_json: axstreamBE/GorillaPP/apps/jsonRiffaPipeNoToken";
+      export CDPATH=.:~:~/projects/axstreamBE/GorillaPP/apps/jsonRiffaPipeNoToken;
+  elif [ $1 = "kafka" ]
+  then
+      echo "set_kafka: be1/GorillaPP/apps/riscVGenPipewithKafka;";
+      export CDPATH=.:~:~/projects/be1/GorillaPP/apps/riscVGenPipewithKafka;
   elif [ $1 = "slr" ] 
   then 
-      echo "set_slr";
+      echo "set_slr: not done yet";
   fi 
 }

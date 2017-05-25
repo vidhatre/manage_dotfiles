@@ -1,0 +1,22 @@
+#"Only use this on Proteus, Never on triton" - Bala
+#Needed to test the bandwidth on the fpga
+#Bala copied the files to proteus and setup directories
+#because i dont know how he did this doc wont have those instructions :/
+
+#You will need two terminals 1 for send and 1 for recv.
+
+#Terminal 1: setup and then recv commands
+$ ssh proteus # test@axdev-proteus
+$ cd new_confs
+$ cd conf_exps
+$ ./apconf_no_fill.o
+$ riffa # recv commands start here
+$ cd recv_confirm
+$ ./testutil 20 0 0 16580
+
+#Terminal 2: send commands
+$ ssh proteus # test@axdev-proteus
+$ riffa
+$ cd jsonCSendLineToken
+$ ./testutil <size> 1 #<size>: can start with 100 usually use 10000 -Bala
+

@@ -1,0 +1,79 @@
+1. Start Instance on AWS ec2 console. use Balas credentials
+    AMI: AWS-FPGA-REPO2 - ami-380c9e2e
+    Instance type: f1.2xlarge
+    Security grps: scgroupF1Inst
+
+2. Also will need AMI from sysnthesis. Keep the afi and afgi numbers saved
+    git -C ~/aws-fpga/ pull
+    pip install --upgrade --user awscli
+    export CL_DIR=/home/centos/aws-fpga/hdk/cl/examples/cl_dram_dma_with_adapter/
+    export EMAIL=vidhatre@bigstream.co
+
+    # build image 
+    source ~/aws-fpga/hdk_setup.sh
+    cd $CL_DIR/build/scripts
+    ./aws_build_dcp_from_cl.sh -notify
+
+    aws s3 cp $CL_DIR/build/checkpoints/to_aws/<*.Developer_CL.tar> s3://dmaTestBucket/
+
+    check_s3_bucket_policy.py \
+    --dcp-bucket dmaTestBucket \
+    --dcp-key <name of tar> \
+    --logs-bucket dmaTestBucket \
+    --logs-key logsTst
+
+    aws ec2 create-fpga-image \
+    --name iniTdmaDrivTest15 \
+    --description dmaBasicDriverTest15 \
+    --input-storage-location Bucket=dmaTestBucket,Key=17_06_07-042851.Developer_CL.tar \
+    --logs-storage-location Bucket=dmaTestBucket,Key=logsTst
+    Output:
+    {
+    "FpgaImageId": "afi-0ad1be06d69f0a6ee", 
+    "FpgaImageGlobalId": "agfi-062b4746158608b3a"
+    }
+3. ssh -x -i ~/.ssh/F1BalaKey.pem centos@<ip from aws console>
+4. First time after loading the Instance do this:
+    cd aws-fpga
+    git pull
+    export CL_DIR=/home/centos/aws-fpga/hdk/cl/examples/cl_dram_dma_with_adapter/
+    export EMAIL=vidhatre@bigstream.co
+    source ./sdk_setup.sh
+
+5. For kernel Drivers:
+    cd /home/centos/aws-fpga/sdk/linux_kernel_drivers/edma/
+    make
+    
+    lsmod | grep edma
+    echo 'edma' | sudo tee --append /etc/modules-load.d/edma.conf
+    sudo cp edma-drv.ko /lib/modules/`uname -r`/
+    sudo depmod
+
+6. To run the test:
+    cd /home/centos/aws-fpga/hdk/cl/examples/cl_dram_dma_with_adapter/software/runtime
+    make
+    sudo ./test_dram_test
+
+7. might have issues with the run. Youll need to remove and add the image and kernel mod again
+    sudo fpga-describe-local-image -S 0 -H
+    sudo fpga-load-local-image -S 0 -I agfi-07920e2d5a74e65d5
+    sudo rmmod edma-drv && sudo insmod /home/centos/aws-fpga/sdk/linux_kernel_drivers/edma/edma-drv.ko
+    #Try now
+    sudo ./test_dram_test
+
+#If doing Virtual JTAG/ ILA 
+1. Before synthesis make sure the 'DEBUG_VIRTUAL_JTAG' is not defined anywhere, cleck is in cl_dram_dma.sv
+   Copy the generated .ltx files to bigstreamhw@shire,
+2. will need to start a xvc server on the f1 instance, in a new terminal session 
+    ssh aws-f1
+    export BOTO_CONFIG=/home/centos/boto.config
+    python /home/centos/src/scripts/add_rdp_security_group.py
+    sudo fpga-start-virtual-jtag -P 10201 -S 0
+
+3. on bigstreamhw@shire:
+    vivado
+    connect_hw_server
+    open_hw_target -xvc_url <hostname or IP address>:10201
+
+   You will need the generated 
+

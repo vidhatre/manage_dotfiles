@@ -1,0 +1,16 @@
+Fix vsim link after altera installation:
+
+Added line 206. Checks for the linux kernel version
+file: /home/altera/15.0/modelsim_ase/vco
+
+200         case $utype in
+201           2.4.[7-9]*)       vco="linux" ;;
+202           2.4.[1-9][0-9]*)  vco="linux" ;;
+203           2.[5-9]*)         vco="linux" ;;
+204           2.[1-9][0-9]*)    vco="linux" ;;
+205           3.[0-9]*)         vco="linux" ;;
+206           4.[0-9]*)         vco="linux" ;;
+207           *)                vco="linux_rh60" ;;
+208         esac
+
+

@@ -1,0 +1,38 @@
+Want to get remote acess via VNC setup. 
+Ubuntu has an issue with encryption. So we will need to turn it off
+
+(Assumption: You are on Ubuntu 16.04)
+
+Steps:
+1) open system app "Desktop Sharing"
+   activate settings:
+   -Sharing:
+     Allow other users to view your desktop
+     Allow other users to control your desktop
+   -Security
+     Require the user to enter this password: *****
+
+   Then close
+
+2) Install Dconf-editor:
+   -run in terminal:
+     sudo apt-get install dconf-editor
+   
+   -Open system app "dconf Editor"
+     -In the sidebar navigate to:
+       org > gnome > desktop > remote-access
+     -Uncheck "require-encryption"
+      (! might have to do this again on system restart)
+
+3) On remote machine:
+   -Copy ip address from hamachi 
+   -Enter into VNC client
+   -Type in password from step 1 > security
+
+Note: 
+- If you are not able to interact with the session double check the 
+  option from STEP.1 "Allow other users to control your desktop"
+  should be checked.
+
+- If was working. and suddenly stopped working redo STEP.2
+   

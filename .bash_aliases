@@ -33,16 +33,19 @@ alias xilinx_setup=". /home/Xilinx/13.4/ISE_DS/settings64.sh"
 #TODO also paste it in the clipboard to save a click
 alias fpath="readlink -f"
 
+#set CDPATH
+export CDPATH=.:~
 #shortcuts to dirs
 alias be='cd ~/projects/axstreamBE/'
 alias bega='cd ~/projects/axstreamBE/GorillaPP/apps'
 alias riffa='cd ~/projects/axstreamRIFFA'
 
 #other commands
-alias edit_bash="vi ~/.bash_aliases"
+alias e_bash="vi ~/.bash_aliases"
+alias e_ssh="vi ~/.ssh/config"
 alias ..="cd .."
 alias ...="cd ../.."
-cls() { cd "$1"; ls;}
+cdl() { cd "$1"; ls;}
 alias update="sudo apt-get update; sudo apt-get upgrade"
 
 # Handy Extract Program
@@ -50,17 +53,17 @@ function extract()
 {
     if [ -f $1 ] ; then
 	case $1 in
-	    *.tar.bz2)   tar xvjf $1     ;;
-	    *.tar.gz)    tar xvzf $1     ;;
-	    *.bz2)       bunzip2 $1      ;;
-	    *.rar)       unrar x $1      ;;
-	    *.gz)        gunzip $1       ;;
-	    *.tar)       tar xvf $1      ;;
-	    *.tbz2)      tar xvjf $1     ;;
-	    *.tgz)       tar xvzf $1     ;;
-	    *.zip)       unzip $1        ;;
+	    *.tar.bz2)   tar xvjf   $1   ;;
+	    *.tar.gz)    tar xvzf   $1   ;;
+	    *.bz2)       bunzip2    $1   ;;
+	    *.rar)       unrar x    $1   ;;
+	    *.gz)        gunzip     $1   ;;
+	    *.tar)       tar xvf    $1   ;;
+	    *.tbz2)      tar xvjf   $1   ;;
+	    *.tgz)       tar xvzf   $1   ;;
+	    *.zip)       unzip      $1   ;;
 	    *.Z)         uncompress $1   ;;
-	    *.7z)        7z x $1         ;;
+	    *.7z)        7z x       $1   ;;
 	    *)           echo "'$1' cannot be extracted via >extract<" ;;
 	esac
     else
@@ -90,7 +93,7 @@ alias config='/usr/bin/git --git-dir=/home/vidhatre/.cfg/ --work-tree=/home/vidh
 
 #Edit CDPATH for working project. Dont want to modify on defaul so alias 
 #alias set_cd='export CDPATH=.:~:/home/vidhatre/projects/axstreamBE/GorillaPP/apps/sLinearRegression'
-function set_cd() { export CDPATH=.:~:$PWD; echo "export CDPATH=.:~:$PWD"; }
+function setcd() { export CDPATH=.:~:$PWD; echo "export CDPATH=.:~:$PWD"; }
 function tst() { 
   if [ $1 = "json" ] 
   then 

@@ -15,6 +15,8 @@ sudo apt-get install openjdk-7-jdk
  sudo update-alternatives --config javac
  sudo update-alternatives --config jar
  sudo update-alternatives --config javah
+ sudo update-alternatives --config jdb
+ sudo update-alternatives --config jar
     Choose between these two:
  #export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/
  #export JAVA_HOME=/usr/lib/jvm/java-8-oracle/

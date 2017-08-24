@@ -1,0 +1,100 @@
+#Needed to intall Hadoop
+
+#1. Get the binary
+#   Since we want 2.7.3 which was older went to hadoop archives
+#   link = https://archive.apache.org/dist/hadoop/common/hadoop-2.7.3/
+#   NOTE: you want hadoop-x.y.z.tar.gz NOT hadoop-x.y.z-src.tar.gz
+
+  $ wget https://archive.apache.org/dist/hadoop/common/hadoop-2.7.3/hadoop-2.7.3.tar.gz
+  $ tar zxf hadoop-2.7.3.tar.gz
+
+
+
+#2. We will want to modify/configure certain files
+#   in the extracted dir you will want to modify these files
+#   hadoop-2.7.3/etc/hadoop/core-site.xml
+#   hadoop-2.7.3/etc/hadoop/hdfs-site.xml
+#   hadoop-2.7.3/etc/hadoop/slaves
+
+$ vi hadoop-2.7.3/etc/hadoop/core-site.xml
+#Add these lines accordingly:
+  <configuration>
+      <property>
+          <name>fs.defaultFS</name>
+          <value>hdfs://127.0.0.1</value>
+          <description>NameNode URI</description>
+      </property>
+  </configuration>
+
+$ vi hadoop-2.7.3/etc/hadoop/hdfs-site.xml
+#Add these lines accordingly:
+  <configuration>
+      <property>
+          <name>dfs.namenode.name.dir</name>
+          <value>file:///home/keith/software/hadoop-2.7.2/data/namenode</value>
+          <description>NameNode directory for namespace and transaction logs storage.</description>
+      </property>
+      <!--property>
+          <name>dfs.replication</name>
+          <value>3</value>
+          </property-->
+      <property>
+          <name>dfs.permissions</name>
+          <value>false</value>
+      </property>
+      <property>
+          <name>dfs.datanode.use.datanode.hostname</name>
+          <value>false</value>
+      </property>
+      <property>
+          <name>dfs.namenode.datanode.registration.ip-hostname-check</name>
+          <value>false</value>
+      </property>
+      <property>
+          <name>dfs.name.dir</name>
+          <value>/home/keith/software/hadoop-2.7.2/data</value>
+      </property>
+      <property>
+          <name>dfs.namenode.http-address</name>
+          <value>127.0.0.1:50070</value>
+          <description>Your NameNode hostname for http access.</description>
+      </property>
+      <!--property>
+          <name>dfs.namenode.secondary.http-address</name>
+          <value>10.0.0.6:50090</value>
+          <description>Your Secondary NameNode hostname for http access.</description>
+      </property-->
+  </configuration>
+
+$ vi hadoop-2.7.3/etc/hadoop/slaves
+# file should be only one line. Don't use localhost
+  127.0.0.1
+
+
+
+#3. JAVA_HOME env variable needs to be set for this make following additions
+#   modify ~/.bashrc of who ever will start hadoop
+#   modify /etc/ssh/sshd_config
+
+$ vi ~/.bashrc
+#Add the following lines accordingly:
+  #Env variable to run hadoop-2.7.3
+  export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/
+  export HADOOP_SSH_OPTS='-o SendEnv=JAVA_HOME'
+  export HADOOP_HOME=/opt/hadoop-2.7.3/
+
+$ sudo vi /etc/ssh/sshd_config
+#Add the followind lines accordingly
+  # Allow client to pass JAVA_HOME env variable
+  AcceptEnv JAVA_HOME
+
+
+
+#4. The command will do ssh you will want to setup passwordless ssh
+#   In this particular case we are sshing from jenkins@some_machine to jenkins@localhost
+#    generate ssh keys (only do if they dont already exist)
+#    copy key to remote machines authorized keys
+
+$ ssh-keygen -t rsa -P "" -f ~/.ssh/id_rsa
+$ ssh-copy-id jenkins@localhost
+

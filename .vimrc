@@ -93,6 +93,9 @@ else
   map <M-Down> ]s
   map <M-Up> [s
 endif
+"https://stackoverflow.com/questions/1557893/making-inserting-a-single-character-in-vim-an-atomic-operation
+nnoremap <TAB> :<C-U>call InsertChar#insert(v:count1)<CR>
+
 hi Search ctermfg=black ctermbg=yellow guifg=green
 
 " this turns off physical line wrapping (ie: automatic insertion of newlines)
@@ -111,9 +114,17 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'derekwyatt/vim-scala'
 "Vim multiple cursor
 Plug 'terryma/vim-multiple-cursors'
+"Stuff for space-insert-single-char and "." to repeat
+Plug 'http://github.com/tpope/vim-repeat'
+Plug 'https://github.com/vim-scripts/InsertChar'
+
 call plug#end()
 
-set expandtab
+" Set tab to 2 spaces
+filetype plugin indent on
+" show existing tab with 4 spaces width
 set tabstop=2
+" when indenting with '>', use 4 spaces width
 set shiftwidth=2
-set softtabstop=2
+" On pressing tab, insert 4 spaces
+set expandtab

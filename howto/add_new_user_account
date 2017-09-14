@@ -1,0 +1,5 @@
+#Add new user to ubuntu
+$ adduser username
+
+#if you want to give them roo
+$ usermod -aG sudo username

@@ -62,7 +62,8 @@ Website: https://community.runabove.com/kb/en/instances/how-to-relay-postfix-mai
   
   Follow steps on Allowing less secure apps to access your account:
     https://support.google.com/accounts/answer/6010255 
- 
+
+*(I did this since I already have 2-factor authentication enabled)
   If the error still persist turn on Google's 2-Step-Verification and Sign in using App Passwords to resolve the error.
     https://support.google.com/accounts/answer/185833?hl=en
 

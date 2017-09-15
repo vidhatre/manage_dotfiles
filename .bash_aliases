@@ -3,7 +3,7 @@
 ## Some stuff i needed in the bashrc
 
 # Need java 7 to work 
-JAVA_HOME=/usr/local/java/java-1.7.0-openjdk-amd64
+JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
 PATH=$PATH:$JAVA_HOME/bin
 export JAVA_HOME
 export PATH

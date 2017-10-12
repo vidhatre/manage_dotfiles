@@ -1,0 +1,10 @@
+How to create submodules, and update them. 
+  link: http://www.vogella.com/tutorials/GitSubmodules/article.html
+
+The link has some extra commands. we can make life easier with git aliases.
+one example is:
+  $ git config --global alias.pullall '!f(){ git pull "$@" && git submodule update --init --recursive; }; f'
+  $ git pullall 
+# the ! means that git wont prepend git infront of the command. 
+  $ git config --global aliasl.ci commit
+  $ git ci # does `git commit`

@@ -108,3 +108,12 @@ function tst() {
       echo "set_slr: not done yet";
   fi 
 }
+
+setup_ml () {
+  # added for Miniconda2 installer
+  export PATH="/home/vidhatre/miniconda2/bin:$PATH"
+  #For CUDA drivers
+  export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}
+  export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+  export CUDA_ROOT=/usr/local/cuda-8.0/bin/ #this is for Theanos
+}

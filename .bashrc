@@ -2,6 +2,10 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+#Git branch name in prompt
+export GITAWAREPROMPT=~/.bash/git-aware-prompt
+source "${GITAWAREPROMPT}/main.sh"
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -58,7 +62,9 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+   # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1="\${debian_chroot:+(\$debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
+
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -136,3 +142,6 @@ export ALTERAOCLSDKROOT="/home/vidhatre/altera/15.0/hld"
 export QSYS_ROOTDIR="/home/vidhatre/altera/15.0/quartus/sopc_builder/bin"
 
 alias config='/usr/bin/git --git-dir=/home/vidhatre/.cfg/ --work-tree=/home/vidhatre'
+
+# added by Miniconda2 installer
+export PATH="/home/vidhatre/miniconda2/bin:$PATH"

@@ -1,0 +1,28 @@
+Follwing guide: https://elitedatascience.com/keras-tutorial-deep-learning-in-python
+
+When you do `python -c "import keras; print keras.__version__"`
+and get error:
+    vidhatre@axdev-dunharrow:~ $ python -c "import keras; print keras.__version__"
+    Using TensorFlow backend.
+    Traceback (most recent call last):
+    File "<string>", line 1, in <module>
+    File "/home/vidhatre/miniconda2/lib/python2.7/site-packages/keras/__init__.py", line 3, in <module>
+    from . import utils
+    File "/home/vidhatre/miniconda2/lib/python2.7/site-packages/keras/utils/__init__.py", line 6, in <module>
+    from . import conv_utils
+    File "/home/vidhatre/miniconda2/lib/python2.7/site-packages/keras/utils/conv_utils.py", line 3, in <module>
+    from .. import backend as K
+    File "/home/vidhatre/miniconda2/lib/python2.7/site-packages/keras/backend/__init__.py", line 83, in <module>
+    from .tensorflow_backend import *
+    File "/home/vidhatre/miniconda2/lib/python2.7/site-packages/keras/backend/tensorflow_backend.py", line 1, in <module>
+    import tensorflow as tf
+    ImportError: No module named tensorflow
+
+Its because backend in tensorflow and not theano. make sure ~/.keras/keras.json is correct:
+    cat ~/.keras/keras.json
+    {
+    "epsilon": 1e-07, 
+    "floatx": "float32", 
+    "image_data_format": "channels_last", 
+    "backend": "theano"
+    }

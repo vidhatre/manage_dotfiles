@@ -48,7 +48,10 @@ Website: https://community.runabove.com/kb/en/instances/how-to-relay-postfix-mai
    Other Notes:
    This will work with any mail server that provides SMTP relaying.
 
-8. Troubleshooting:
+8. How to send attachments. 
+   https://www.thegeekdiary.com/how-to-send-mails-with-attachments-using-the-solaris-mailx-command/
+
+9. Troubleshooting:
   Monitor postfix mail log in a separate session with the following command:
 
     $ tail -f /var/log/maillog

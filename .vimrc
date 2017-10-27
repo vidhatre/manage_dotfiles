@@ -45,7 +45,7 @@ set number
 set showmatch
 " intelligent comments
 set comments=sl:/*,mb:\ *,elx:\ */
- 
+
 " Install OmniCppComplete like described on http://vim.wikia.com/wiki/C++_code_completion
 " This offers intelligent C++ completion when typing ‘.’ ‘->’ or <C-o>
 " Load standard tag files
@@ -53,7 +53,7 @@ set tags+=~/.vim/tags/cpp
 set tags+=~/.vim/tags/gl
 set tags+=~/.vim/tags/sdl
 set tags+=~/.vim/tags/qt4
- 
+
 " Install DoxygenToolkit from http://www.vim.org/scripts/script.php?script_id=987
 let g:DoxygenToolkit_authorName="John Doe <john@doe.com>"
 "expand tabs to spaces
@@ -102,7 +102,7 @@ hi Search ctermfg=black ctermbg=yellow guifg=green
 set textwidth=0 wrapmargin=0
 
 
-" Added vim-plug ins 
+" Added vim-plug ins
 call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
@@ -117,14 +117,18 @@ Plug 'terryma/vim-multiple-cursors'
 "Stuff for space-insert-single-char and "." to repeat
 Plug 'http://github.com/tpope/vim-repeat'
 Plug 'https://github.com/vim-scripts/InsertChar'
+" better bottom status bar
+Plug 'bling/vim-airline'
+" Git in Vim
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
 " Set tab to 2 spaces
 filetype plugin indent on
-" show existing tab with 4 spaces width
+" show existing tab with 2 spaces width
 set tabstop=2
-" when indenting with '>', use 4 spaces width
+" when indenting with '>', use 2 spaces width
 set shiftwidth=2
-" On pressing tab, insert 4 spaces
+" On pressing tab, insert 2 spaces
 set expandtab

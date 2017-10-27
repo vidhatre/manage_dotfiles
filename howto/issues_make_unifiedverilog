@@ -10,4 +10,10 @@ To Fix: append the 0002 to module name in .vo file
 #Issue 2: # ** Error: (vsim-3063) ../../build/verilog/Top.v(4528): 
 #Port 'io_out_bits_a' not found in the connected module (10th connection).
 #Soln:
-the last part of the name "_a" refers to the variable name in the output type of the module i had "a" as the variable in the gorilla code. But in the verilog it was q. changed the "_q" to "_a". this fixed my problem
+the last part of the name "_a" refers to the variable name in the output type of the module i had "a" as the
+variable in the gorilla code. But in the verilog it was q. changed the "_q" to "_a". this fixed my problem
+
+#Similar to above. IF there are ports that are unconnected in the Top.v
+Then you have an issues with struct varaible names and which structs you are using for the flow. 
+You need to trace which struct are being called for the offloads. Input/Output everywhere. Make sure
+they are using the exact same struct NOT another struct with a similar definition. 

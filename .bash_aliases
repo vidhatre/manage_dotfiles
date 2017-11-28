@@ -4,9 +4,13 @@
 
 # Need java 7 to work 
 JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
+#JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
 PATH=$PATH:$JAVA_HOME/bin
 export JAVA_HOME
 export PATH
+
+#Hadoop home
+export HADOOP_HOME=/opt/hadoop-2.7.3
 
 #Gorilla home 
 export GORILLA_HOME=~/projects/axstreamBE/GorillaPP/
@@ -42,6 +46,7 @@ alias riffa='cd ~/projects/axstreamRIFFA'
 
 #other commands
 alias e_bash="vi ~/.bash_aliases"
+alias e_vim="vi ~/.vimrc"
 alias e_ssh="vi ~/.ssh/config"
 alias ..="cd .."
 alias ...="cd ../.."
@@ -73,7 +78,7 @@ function extract()
 
 
 # Creates an archive (*.tar.gz) from given directory.
-function maketar() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
+function mktar() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
 
 # Create a ZIP archive of a file or folder.
 function makezip() { zip -r "${1%%/}.zip" "$1" ; }
@@ -82,11 +87,14 @@ function makezip() { zip -r "${1%%/}.zip" "$1" ; }
 function sanitize() { chmod -R u=rwX,g=rX,o= "$@" ;}
 
 #fixthis
-#function hex2dec { echo "$((16#$1))"; }
-#function dec2hex { echo "$((10#$1))";  }
+function h2d { echo "$((16#$1))"; }
+function d2h { printf '%X\n' $1;  }
+
+# automatically open files with the right program
+alias xopen="xdg-open"
 
 # put stuff in the the clipboard "somecmd | clipin"
-alias clipin='xclip -i -selection clipboard'
+alias vclip='xclip -i -selection clipboard'
 
 #git for home dir to manage dot files. use "config" instead of "git" in home dir
 alias config='/usr/bin/git --git-dir=/home/vidhatre/.cfg/ --work-tree=/home/vidhatre'
@@ -119,3 +127,6 @@ setup_ml () {
 }
 setup_ml
 
+#Git command to remove local branches that were deleted in remote
+#make into a function? split into two parts show the branches and then confirm delete
+alias gitclb="git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done"

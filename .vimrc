@@ -121,6 +121,9 @@ Plug 'https://github.com/vim-scripts/InsertChar'
 Plug 'bling/vim-airline'
 " Git in Vim
 Plug 'tpope/vim-fugitive'
+" Tabularize data, visual select > :Tab /<delim>
+" http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
+Plug 'godlygeek/tabular'
 
 call plug#end()
 

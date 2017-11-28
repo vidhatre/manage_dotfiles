@@ -1,0 +1,51 @@
+2) setup our log repository. this is a pretty important task. the log repository machine is called axdev-elara. 
+you can use jenkins username to log into it. this machine has about 40TB of storage. 
+the basic idea is to define logs/ and data/ directories in this file system so that every other machine can see it. 
+For this you need to setup NFS in all the machines. 
+
+I believe the DELL guy exported the filesystem (John thinks the command is exportfs or something like that). 
+But you need to make sure this setting is going to be there every time we restart this server or any other machine. 
+so you need to put it in fstab (I guess). The best way is to test is with one machine (it can be your own machine) 
+and then do the same for others. One important thing is to define different levels of access to 
+different directories: all access, group access, and individual access.
+
+Notes:
+For Server(axdev-elara):
+  $dpkg -l | grep nfs-kernel-server
+  $apt-get install nfs-kernel-server
+
+  Directories to be shared should be in /export/
+  but the directories in /export should be bind mounted from there original location
+    $mount --bind /home/users /export/users
+  To save us from retyping this after every reboot we add the following
+  line to /etc/fstab (whatever is in '')
+    '/home/users    /export/users   none    bind  0  0'
+
+
+sudo apt-get install nfs-common
+sudo mkdir -p /usr/remote/share/{logs,data}
+echo "192.168.0.30:/export/logs   /usr/remote/share/logs   nfs    auto  0  0" | sudo tee -a /etc/fstab
+echo "192.168.0.30:/export/data   /usr/remote/share/data   nfs    auto  0  0" | sudo tee -a /etc/fstab
+sudo mount -a
+echo $HOSTNAME >> /usr/remote/share/logs/test 
+cat !$
+
+echo "output" | sudo tee -a file
+
+
+
+rw hosts:
+thebe: 192.168.0.23
+amalthea: 192.168.0.26 *** not able to install
+callisto: 192.168.0.62
+ducati: 192.168.0.51
+europa: 192.168.0.7
+ganymede: 192.168.0.43
+jupiter: 192.168.0.27
+leda: 192.168.0.32
+metis: 192.168.0.58 (redhat)
+moria: 192.168.0.61
+proteus: 192.168.0.16
+trex: 192.168.0.44
+micron-ubuntu: 192.168.0.38
+micron4u-ubuntu: 192.168.0.63

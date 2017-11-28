@@ -1,0 +1,22 @@
+# Wanted to install pycharm from command line. Used ubuntus umake feature.
+# link: https://itsfoss.com/install-pycharm-ubuntu/
+
+1. To install PyCharm using umake, you need to have umake first. Normally, it
+   should already be installed in your system, but if it is not, use the PPA
+   below to get the latest stable version of umake:
+
+  $ sudo add-apt-repository ppa:ubuntu-desktop/ubuntu-make
+  $ sudo apt-get update
+  $ sudo apt-get install ubuntu-make
+  
+2a. Once you have umake, use the command below to install PyCharm Community Edition in Ubuntu:
+
+  $ umake ide pycharm
+
+(skip)2b. To install PyCharm Professional Edition (you need license for this), you can use the command below:
+
+  $ umake ide pycharm-professional
+
+4. To remove PyCharm installed via umake, use the command below:
+
+$ umake -r ide pycharm

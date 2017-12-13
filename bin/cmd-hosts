@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+server_text="${RED}[%s]${NC}"
+#server_text="[%s]"
+
+# jenkins-hosts
+hosts=( axdev-amalthea
+        axdev-thebe
+        axdev-callisto
+        axdev-ducati
+        axdev-europa
+        axdev-ganymede
+        axdev-jupiter
+        axdev-leda
+        axdev-metis
+        axdev-moria
+        axdev-trex
+        micron-ubuntu
+        micron4u-ubuntu
+        )
+
+printf -v line '=%.0s' {1..50}
+for host in ${hosts[@]}; do
+  printf "$server_text %s\n" $host ${line:${#host}}
+  ssh jenkins@${host} $@ || :
+done
+

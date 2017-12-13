@@ -3,11 +3,11 @@
 ## Some stuff i needed in the bashrc
 
 # Need java 7 to work 
-JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
+#JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
 #JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
-PATH=$PATH:$JAVA_HOME/bin
-export JAVA_HOME
-export PATH
+#PATH=$PATH:$JAVA_HOME/bin
+#export JAVA_HOME
+#export PATH
 
 #Hadoop home
 export HADOOP_HOME=/opt/hadoop-2.7.3
@@ -32,6 +32,9 @@ PATH=$PATH:/home/altera/15.0/modelsim_ase/bin
 
 #For Xilinx tools
 alias xilinx_setup=". /home/Xilinx/13.4/ISE_DS/settings64.sh"
+
+#tmux tab completion
+source ~/.bash/tmux.completion.bash
 
 #Get the full path of a file
 #TODO also paste it in the clipboard to save a click
@@ -129,4 +132,15 @@ setup_ml
 
 #Git command to remove local branches that were deleted in remote
 #make into a function? split into two parts show the branches and then confirm delete
-alias gitclb="git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done"
+#alias gitclb="git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done"
+gitclb () {
+  git fetch -p && for branch in $(git branch -vv | grep ': gone]' | awk '{print $1}'); do git branch -D $branch; done
+}
+
+
+#installing pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi

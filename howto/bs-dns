@@ -1,0 +1,25 @@
+
+Hi All ,
+
+I was able to setup DNS server on ganymede. But this version is static(no dhcp).
+DHCP setting up with Netgear seems to not work and might take longer time. 
+
+
+I want you guys with desktop or servers to do the following 
+do ifconfig and find your ip address 
+  add the following to your /etc/network/interfaces
+
+  auto eth0
+  iface eth0 inet static
+  address 192.168.0.22
+  netmask 255.255.255.0
+  gateway 192.168.0.1
+  dns-search linux.rocks
+  dns-nameservers 192.168.0.43
+
+
+  if you have existing eth0 or other ethernet interfaces - please remove them. Then run the following 
+
+    sudo ifdown <interface>; sudo ifup <interface>
+
+    you should be able to access axdev-shire, axdev-triton and axdev-ganymede so far 

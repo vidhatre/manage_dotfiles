@@ -37,7 +37,7 @@ echo "output" | sudo tee -a file
 
 rw hosts:
 thebe: 192.168.0.23
-amalthea: 192.168.0.26 *** not able to install
+amalthea: 192.168.0.26
 callisto: 192.168.0.62
 ducati: 192.168.0.51
 europa: 192.168.0.7
@@ -50,3 +50,10 @@ proteus: 192.168.0.16
 trex: 192.168.0.44
 micron-ubuntu: 192.168.0.38
 micron4u-ubuntu: 192.168.0.63
+alamo: 192.168.0.39 
+
+issues with metis: rpcbind problem
+  [jenkins@axdev-metis ~]$ sudo systemctl enable rpcbind.socket
+  [jenkins@axdev-metis ~]$ sudo systemctl restart rpcbind.service
+  [jenkins@axdev-metis ~]$ sudo mount -a
+

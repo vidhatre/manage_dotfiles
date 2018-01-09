@@ -1,0 +1,6 @@
+1.axdev-triton had problems with apt-get 
+  complained about ldpa-driver make wasn't working
+
+  bala fixed it using:
+  $ sudo apt-get update --fix-missing
+  $ sudo dpkg  --configure -a

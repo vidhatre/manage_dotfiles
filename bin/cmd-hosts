@@ -15,11 +15,13 @@ hosts=( axdev-amalthea
         axdev-ducati
         axdev-europa
         axdev-ganymede
+        axdev-halimede
         axdev-jupiter
         axdev-leda
         axdev-metis
         axdev-moria
         axdev-trex
+        axdev-alamo
         micron-ubuntu
         micron4u-ubuntu
         )

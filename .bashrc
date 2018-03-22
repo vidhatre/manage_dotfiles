@@ -144,5 +144,5 @@ export QSYS_ROOTDIR="/home/vidhatre/altera/15.0/quartus/sopc_builder/bin"
 alias config='/usr/bin/git --git-dir=/home/vidhatre/.cfg/ --work-tree=/home/vidhatre'
 
 # added by Miniconda2 installer
-export PATH="/home/vidhatre/miniconda2/bin:$PATH"
+#export PATH="/home/vidhatre/miniconda2/bin:$PATH"
 

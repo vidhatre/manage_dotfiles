@@ -14,3 +14,28 @@
     DESKTOP
      sudo apt-get install --install-recommends linux-generic-hwe-16.04 xserver-xorg-hwe-16.04
 
+3. multiple shortcuts for media controls because windows keyboard
+   settings > keyboard > shortcuts > custom > +
+   Note that command is an actual shell command 
+   so for media stuff piggy backing on current shortcut keys
+   command "xdotool key --clearmodifiers XF86AudioNext"
+
+4. microsoft ergo keyboard 4000, activate scroll thing
+  
+   url: https://askubuntu.com/a/702761
+     I have successfully used approach similar to the previous ones 
+       - instructions were mentioned in /lib/udev/hwdb.d/60-keyboard.hwdb.
+   
+     I've created new hwdb file using sudo nano /etc/udev/hwdb.d/70-keyboard.hwdb containing:
+     
+       # Microsoft Natural Ergonomic Keyboard 4000 - remap zoom in/out to page up/down
+       evdev:input:b0003v045Ep00DB*
+        KEYBOARD_KEY_c022d=pageup
+        KEYBOARD_KEY_c022e=pagedown
+     NOTE: you can set to scrollup and scrolldown as well.
+
+     after that in terminal:
+     
+       sudo udevadm hwdb --update
+       sudo udevadm control --reload
+    

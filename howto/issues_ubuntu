@@ -4,3 +4,13 @@
   bala fixed it using:
   $ sudo apt-get update --fix-missing
   $ sudo dpkg  --configure -a
+
+2. Was having issues with monitor resolution after crashes from nvidia drivers. on ubuntu 16.04LTS
+    On a discovery of the HWE where ubuntuLTS has track where they package the newer kernel and 
+    Xserver. Switching to this fixed my issues. 
+
+    https://wiki.ubuntu.com/Kernel/LTSEnablementStack#Ubuntu_16.04_LTS_-_Xenial_Xerus
+   
+    DESKTOP
+     sudo apt-get install --install-recommends linux-generic-hwe-16.04 xserver-xorg-hwe-16.04
+

@@ -39,3 +39,5 @@
        sudo udevadm hwdb --update
        sudo udevadm control --reload
     
+5. ubuntu notifications became ehite (xf4ce):
+   https://askubuntu.com/questions/105377/accidentally-replaced-notify-osd-with-xfce-notifyd-how-do-i-fix-it#

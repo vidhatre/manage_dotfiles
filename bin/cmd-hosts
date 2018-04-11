@@ -24,6 +24,8 @@ hosts=( axdev-amalthea
         axdev-alamo
         micron-ubuntu
         micron4u-ubuntu
+        axdev-jsc
+        axdev-rc1
         )
 
 printf -v line '=%.0s' {1..50}

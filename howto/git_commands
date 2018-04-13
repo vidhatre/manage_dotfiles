@@ -1,0 +1,18 @@
+1. Git aliases
+  $ git config --global alias.pullall '!f(){ git pull "$@" && git submodule update --init --recursive; }; f'
+  # creates a new aliases in global context use `git pullall`
+
+
+2. Git global config to force https instead of ssh
+  $ git config --global url."https://github.com/".insteadOf git@github.com:
+  # all git commands will be over https now, you will be prompted for username password everytime
+
+3. Git credentials caching (reduce password prompts via https)
+  $ git config --global credential.helper cache
+  # Set git to use the credential memory cache
+
+  $ git config --global credential.helper 'cache --timeout=3600'
+  # Set the cache to timeout after 1 hour (setting is in seconds)
+  
+4. Edit git global config
+  $ git config --global --edit

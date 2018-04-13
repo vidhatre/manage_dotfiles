@@ -48,9 +48,10 @@ alias bega='cd ~/projects/axstreamBE/GorillaPP/apps'
 alias riffa='cd ~/projects/axstreamRIFFA'
 
 #other commands
-alias e_bash="vi ~/.bash_aliases"
-alias e_vim="vi ~/.vimrc"
-alias e_ssh="vi ~/.ssh/config"
+alias ebash="vi ~/.bash_aliases"
+alias evim="vi ~/.vimrc"
+alias essh="vi ~/.ssh/config"
+alias etmux="vi ~/.tmux.conf"
 alias ..="cd .."
 alias ...="cd ../.."
 cdl() { cd "$1"; ls;}

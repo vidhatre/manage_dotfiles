@@ -31,8 +31,8 @@ set autoindent
 " use intelligent indentation for C
 set smartindent
 " configure tabwidth and insert spaces instead of tabs
-set tabstop=4        " tab width is 4 spaces
-set shiftwidth=4     " indent also with 4 spaces
+set tabstop=2        " tab width is 4 spaces
+set shiftwidth=2     " indent also with 4 spaces
 "set expandtab        " expand tabs to spaces
 " wrap lines at 120 chars. 80 is somewaht antiquated with nowadays displays.
 set textwidth=120
@@ -49,24 +49,24 @@ set comments=sl:/*,mb:\ *,elx:\ */
 " Install OmniCppComplete like described on http://vim.wikia.com/wiki/C++_code_completion
 " This offers intelligent C++ completion when typing ‘.’ ‘->’ or <C-o>
 " Load standard tag files
-set tags+=~/.vim/tags/cpp
-set tags+=~/.vim/tags/gl
-set tags+=~/.vim/tags/sdl
-set tags+=~/.vim/tags/qt4
+"set tags+=~/.vim/tags/cpp
+"set tags+=~/.vim/tags/gl
+"set tags+=~/.vim/tags/sdl
+"set tags+=~/.vim/tags/qt4
 
 " Install DoxygenToolkit from http://www.vim.org/scripts/script.php?script_id=987
-let g:DoxygenToolkit_authorName="John Doe <john@doe.com>"
+"let g:DoxygenToolkit_authorName="John Doe <john@doe.com>"
 "expand tabs to spaces
 map <F8> :retab <CR> :wq! <CR>
 
 " Enhanced keyboard mappings
 "
-" in normal mode F2 will save the file
-nmap <F2> :w<CR>
-" in insert mode F2 will exit insert, save, enters insert again
-imap <F2> <ESC>:w<CR>i
-" toggle paste mode
-set pastetoggle=<F3>
+" F2: toggle paste mode
+set pastetoggle=<F2>
+" F3: in normal mode save the file
+nmap <F3> :w<CR>
+" F3: in insert mode will exit insert, save, enters insert again
+imap <F3> <ESC>:w<CR>i
 " switch between header/source with F4
 map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 " recreate tags file with F5
@@ -95,6 +95,7 @@ else
   map <M-Down> ]s
   map <M-Up> [s
 endif
+
 "https://stackoverflow.com/questions/1557893/making-inserting-a-single-character-in-vim-an-atomic-operation
 nnoremap <TAB> :<C-U>call InsertChar#insert(v:count1)<CR>
 
@@ -103,29 +104,27 @@ hi Search ctermfg=black ctermbg=yellow guifg=green
 " this turns off physical line wrapping (ie: automatic insertion of newlines)
 set textwidth=0 wrapmargin=0
 
-
 " Added vim-plug ins
 call plug#begin('~/.vim/plugged')
-" Make sure you use single quotes
-
-Plug 'vhda/verilog_systemverilog.vim'
-Plug 'https://github.com/rhysd/vim-clang-format.git'
-" NERD tree will be loaded on the first invocation of NERDTreeToggle command
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-" plugin for scala syntax highlighting
-Plug 'derekwyatt/vim-scala'
-"Vim multiple cursor
-Plug 'terryma/vim-multiple-cursors'
-"Stuff for space-insert-single-char and "." to repeat
-Plug 'http://github.com/tpope/vim-repeat'
-Plug 'https://github.com/vim-scripts/InsertChar'
-" better bottom status bar
-Plug 'bling/vim-airline'
-" Git in Vim
-Plug 'tpope/vim-fugitive'
-" Tabularize data, visual select > :Tab /<delim>
-" http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
-Plug 'godlygeek/tabular'
+  " Make sure you use single quotes
+  Plug 'vhda/verilog_systemverilog.vim'
+  Plug 'https://github.com/rhysd/vim-clang-format.git'
+  " NERD tree will be loaded on the first invocation of NERDTreeToggle command
+  Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+  " plugin for scala syntax highlighting
+  Plug 'derekwyatt/vim-scala'
+  "Vim multiple cursor
+  Plug 'terryma/vim-multiple-cursors'
+  "Stuff for space-insert-single-char and "." to repeat
+  Plug 'http://github.com/tpope/vim-repeat'
+  Plug 'https://github.com/vim-scripts/InsertChar'
+  " better bottom status bar
+  Plug 'bling/vim-airline'
+  " Git in Vim
+  Plug 'tpope/vim-fugitive'
+  " Tabularize data, visual select > :Tab /<delim>
+  " http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
+  Plug 'godlygeek/tabular'
 
 call plug#end()
 

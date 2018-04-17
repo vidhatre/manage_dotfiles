@@ -16,3 +16,10 @@
   
 4. Edit git global config
   $ git config --global --edit
+
+5. git clean local branches: 
+  # prune local branches that were deleted on remote/origin
+  #one time:
+  $ git config --glocal alias.clb "! f() { git fetch -p && for branch in $(git branch -vv | grep ': gone]' | awk '{print $1}'); do git branch -D $branch; done;}; f"
+  # usage:
+  $ git clb

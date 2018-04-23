@@ -146,3 +146,5 @@ alias config='/usr/bin/git --git-dir=/home/vidhatre/.cfg/ --work-tree=/home/vidh
 # added by Miniconda2 installer
 #export PATH="/home/vidhatre/miniconda2/bin:$PATH"
 
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

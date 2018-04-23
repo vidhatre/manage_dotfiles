@@ -69,6 +69,7 @@ nmap <F3> :w<CR>
 imap <F3> <ESC>:w<CR>i
 " switch between header/source with F4
 map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+"nnoremap <F4> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 " recreate tags file with F5
 map <F5> :!ctags -R –c++-kinds=+p –fields=+iaS –extra=+q .<CR>
 " create doxygen comment
@@ -99,12 +100,42 @@ endif
 "https://stackoverflow.com/questions/1557893/making-inserting-a-single-character-in-vim-an-atomic-operation
 nnoremap <TAB> :<C-U>call InsertChar#insert(v:count1)<CR>
 
+" Keep the cursor on the same column
+set nostartofline
+
+"  Make Y behave like other capitals
+nnoremap Y y$
+
+"====[ annoyances ]===============================
+" nnoremap :W :w has a delay
+nmap ; :
+command W  w
+"command Q  q
+"command WQ wq
+"command Wq wq
+
+"====[ specific visual settings ]=================
+" seach highlighting
 hi Search ctermfg=black ctermbg=yellow guifg=green
+"====[ highlight working line num only ]==========
+" higlight the working lines number
+set cursorline
+"hi cursorline cterm=none
+"hi cursorlinenr ctermfg=red
+if has('gui_running')
+    " GUI colors
+  hi cursorline cterm=none guibg=grey15
+  hi cursorlinenr ctermfg=red
+else
+  " Non-GUI (terminal) colors
+  hi cursorline cterm=none
+  hi cursorlinenr ctermfg=red
+endif
 
 " this turns off physical line wrapping (ie: automatic insertion of newlines)
 set textwidth=0 wrapmargin=0
 
-" Added vim-plug ins
+"====[ vim plugins ]==============================
 call plug#begin('~/.vim/plugged')
   " Make sure you use single quotes
   Plug 'vhda/verilog_systemverilog.vim'
@@ -118,14 +149,30 @@ call plug#begin('~/.vim/plugged')
   "Stuff for space-insert-single-char and "." to repeat
   Plug 'http://github.com/tpope/vim-repeat'
   Plug 'https://github.com/vim-scripts/InsertChar'
-  " better bottom status bar
-  Plug 'bling/vim-airline'
-  " Git in Vim
-  Plug 'tpope/vim-fugitive'
   " Tabularize data, visual select > :Tab /<delim>
   " http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
   Plug 'godlygeek/tabular'
+  " better bottom status bar
+  Plug 'bling/vim-airline'
+  " Git commands in Vim
+  Plug 'tpope/vim-fugitive'
+  " Git gutter in  vim
+  Plug 'airblade/vim-gitgutter'
+  " Installs fzf for bash as well. https://www.youtube.com/watch?v=aXPQTesFdTI
+  " PlugInstall and PlugUpdate will clone fzf in ~/.fzf and run install script
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
 
+  "Themes
+  Plug 'chriskempson/base16-vim'
+  Plug 'tomasr/molokai'
+  Plug 'chriskempson/vim-tomorrow-theme'
+  Plug 'morhetz/gruvbox'
+  Plug 'yuttie/hydrangea-vim'
+  Plug 'tyrannicaltoucan/vim-deep-space'
+  Plug 'AlessandroYorba/Despacio'
+  Plug 'cocopon/iceberg.vim'
+  Plug 'w0ng/vim-hybrid'
 call plug#end()
 
 " Set tab to 2 spaces
@@ -136,3 +183,20 @@ set tabstop=2
 set shiftwidth=2
 " On pressing tab, insert 2 spaces
 set expandtab
+
+
+"====[ Functions ]================================
+" Remove trailing whitespace
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+command! TrimWhitespace call TrimWhitespace()
+
+" smart line numbers
+set number relativenumber
+  augroup numbertoggle
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END

@@ -25,6 +25,8 @@ set show-all-if-ambiguous on
 #insensitivity to underscores nad hyphens (tab completion)
 #set completion-map-case on
 
+#bash with vi mode. cheatsheet in ~/howto/bash-vi-editing-mode-cheat-sheet.txt
+set -o vi
 
 #For Altera tools,  Quartus to work
 alias altera_setup="source ~/Altera_Licenses/bashrc_addon_altera_quartus"
@@ -138,7 +140,11 @@ gitclb () {
   git fetch -p && for branch in $(git branch -vv | grep ': gone]' | awk '{print $1}'); do git branch -D $branch; done
 }
 
+## IF in tmux let fzf know for tmux split panes
+[ -z "$TMUX" ] && export FZF_TMUX=1
 
+
+## NEEDS to happen last
 #installing pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"

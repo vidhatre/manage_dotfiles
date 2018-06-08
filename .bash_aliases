@@ -27,6 +27,12 @@ set show-all-if-ambiguous on
 
 #bash with vi mode. cheatsheet in ~/howto/bash-vi-editing-mode-cheat-sheet.txt
 set -o vi
+#get back shortcuts from readline mode
+bind -m vi-command ".":insert-last-argument
+bind -m vi-insert "\C-l.":clear-screen
+bind -m vi-insert "\C-a.":beginning-of-line
+bind -m vi-insert "\C-e.":end-of-line
+bind -m vi-insert "\C-w.":backward-kill-word
 
 #For Altera tools,  Quartus to work
 alias altera_setup="source ~/Altera_Licenses/bashrc_addon_altera_quartus"
@@ -58,6 +64,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 cdl() { cd "$1"; ls;}
 alias update="sudo apt-get update; sudo apt-get upgrade"
+alias ipy="ipython"
 
 # Handy Extract Program
 function extract()

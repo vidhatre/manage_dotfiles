@@ -112,6 +112,9 @@ alias vclip='xclip -i -selection clipboard'
 #git for home dir to manage dot files. use "config" instead of "git" in home dir
 alias config='/usr/bin/git --git-dir=/home/vidhatre/.cfg/ --work-tree=/home/vidhatre'
 
+#Calling IPython from a virtualenv
+alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
+
 #Edit CDPATH for working project. Dont want to modify on defaul so alias 
 #alias set_cd='export CDPATH=.:~:/home/vidhatre/projects/axstreamBE/GorillaPP/apps/sLinearRegression'
 function setcd() { export CDPATH=.:~:$PWD; echo "export CDPATH=.:~:$PWD"; }

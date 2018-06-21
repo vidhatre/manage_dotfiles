@@ -34,3 +34,10 @@
    ...
   'myfunc' XXX.XXX ms
   ``` 
+
+## Sources
+  - https://medium.com/pythonhive/python-decorator-to-measure-the-execution-time-of-methods-fa04cb6bb36d
+
+## Maybe a useful tool
+  - Does a full profiling as well
+    https://mg.pov.lt/profilehooks/

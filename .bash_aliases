@@ -49,7 +49,7 @@ source ~/.bash/tmux.completion.bash
 alias fpath="readlink -f"
 
 #set CDPATH
-export CDPATH=.:~
+export CDPATH=.:~/projects/
 #shortcuts to dirs
 alias be='cd ~/projects/axstreamBE/'
 alias bega='cd ~/projects/axstreamBE/GorillaPP/apps'
@@ -106,8 +106,8 @@ function d2h { printf '%X\n' $1;  }
 # automatically open files with the right program
 alias xopen="xdg-open"
 
-# put stuff in the the clipboard "somecmd | clipin"
-alias vclip='xclip -i -selection clipboard'
+# put stuff in the the clipboard "somecmd | clip"
+alias clip='xclip -i -selection clipboard'
 
 #git for home dir to manage dot files. use "config" instead of "git" in home dir
 alias config='/usr/bin/git --git-dir=/home/vidhatre/.cfg/ --work-tree=/home/vidhatre'
@@ -152,6 +152,39 @@ gitclb () {
 
 ## IF in tmux let fzf know for tmux split panes
 [ -z "$TMUX" ] && export FZF_TMUX=1
+
+## Get a single shared ssh-agent running so that can have keyless access.
+##   - to use it in tmux make sure that tmux import the env variables 'set -g update-environment -r'
+##   - source: https://development.robinwinslow.uk/2012/07/20/tmux-and-ssh-auto-login-with-ssh-agent-finally/
+if [ -z "$TMUX" ]; then
+    # we're not in a tmux session
+
+    if [ ! -z "$SSH_TTY" ]; then
+        # We logged in via SSH
+
+        # if ssh auth variable is missingi then set the default
+        if [ -z "$SSH_AUTH_SOCK" ]; then
+            export SSH_AUTH_SOCK="$HOME/.ssh/.auth_socket"
+        fi
+
+        # if socket is not available create a new auth session
+        if [ ! -S "$SSH_AUTH_SOCK" ]; then
+            `ssh-agent -a $SSH_AUTH_SOCK` > /dev/null 2>&1
+            echo $SSH_AGENT_PID > $HOME/.ssh/.auth_pid
+        fi
+
+        # if agent isn't defined, set it from pid file
+        if [ -z $SSH_AGENT_PID ]; then
+            export SSH_AGENT_PID=`cat $HOME/.ssh/.auth_pid`
+        fi
+
+        # Add all default keys to ssh auth
+        ssh-add 2>/dev/null
+
+        # start tmux
+        #tmux attach
+    fi
+fi
 
 
 ## NEEDS to happen last

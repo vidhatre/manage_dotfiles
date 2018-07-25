@@ -2,7 +2,7 @@
 
 ## Some stuff i needed in the bashrc
 
-# Need java 7 to work 
+# Need java 7 to work
 #JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
 #JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
 #PATH=$PATH:$JAVA_HOME/bin
@@ -12,7 +12,7 @@
 #Hadoop home
 export HADOOP_HOME=/opt/hadoop-2.7.3
 
-#Gorilla home 
+#Gorilla home
 export GORILLA_HOME=~/projects/axstreamBE/GorillaPP/
 
 #Shorten working dir in prompt display
@@ -70,22 +70,22 @@ alias ipy="ipython"
 function extract()
 {
     if [ -f $1 ] ; then
-	case $1 in
-	    *.tar.bz2)   tar xvjf   $1   ;;
-	    *.tar.gz)    tar xvzf   $1   ;;
-	    *.bz2)       bunzip2    $1   ;;
-	    *.rar)       unrar x    $1   ;;
-	    *.gz)        gunzip     $1   ;;
-	    *.tar)       tar xvf    $1   ;;
-	    *.tbz2)      tar xvjf   $1   ;;
-	    *.tgz)       tar xvzf   $1   ;;
-	    *.zip)       unzip      $1   ;;
-	    *.Z)         uncompress $1   ;;
-	    *.7z)        7z x       $1   ;;
-	    *)           echo "'$1' cannot be extracted via >extract<" ;;
-	esac
+  case $1 in
+      *.tar.bz2)   tar xvjf   $1   ;;
+      *.tar.gz)    tar xvzf   $1   ;;
+      *.bz2)       bunzip2    $1   ;;
+      *.rar)       unrar x    $1   ;;
+      *.gz)        gunzip     $1   ;;
+      *.tar)       tar xvf    $1   ;;
+      *.tbz2)      tar xvjf   $1   ;;
+      *.tgz)       tar xvzf   $1   ;;
+      *.zip)       unzip      $1   ;;
+      *.Z)         uncompress $1   ;;
+      *.7z)        7z x       $1   ;;
+      *)           echo "'$1' cannot be extracted via >extract<" ;;
+  esac
     else
-	echo "'$1' is not a valid file!"
+  echo "'$1' is not a valid file!"
     fi
 }
 
@@ -115,22 +115,22 @@ alias config='/usr/bin/git --git-dir=/home/vidhatre/.cfg/ --work-tree=/home/vidh
 #Calling IPython from a virtualenv
 alias ipy="python -c 'import IPython; IPython.terminal.ipapp.launch_new_instance()'"
 
-#Edit CDPATH for working project. Dont want to modify on defaul so alias 
+#Edit CDPATH for working project. Dont want to modify on defaul so alias
 #alias set_cd='export CDPATH=.:~:/home/vidhatre/projects/axstreamBE/GorillaPP/apps/sLinearRegression'
 function setcd() { export CDPATH=.:~:$PWD; echo "export CDPATH=.:~:$PWD"; }
-function tst() { 
-  if [ $1 = "json" ] 
-  then 
+function tst() {
+  if [ $1 = "json" ]
+  then
       echo "set_json: axstreamBE/GorillaPP/apps/jsonRiffaPipeNoToken";
       export CDPATH=.:~:~/projects/axstreamBE/GorillaPP/apps/jsonRiffaPipeNoToken;
   elif [ $1 = "kafka" ]
   then
       echo "set_kafka: be1/GorillaPP/apps/riscVGenPipewithKafka;";
       export CDPATH=.:~:~/projects/be1/GorillaPP/apps/riscVGenPipewithKafka;
-  elif [ $1 = "slr" ] 
-  then 
+  elif [ $1 = "slr" ]
+  then
       echo "set_slr: not done yet";
-  fi 
+  fi
 }
 
 setup_ml () {
@@ -143,7 +143,7 @@ setup_ml () {
 }
 setup_ml
 
-#Git command to remove local branches that were deleted in remote
+#Git command to Clean Local Branches (CLB) that were deleted in remote
 #make into a function? split into two parts show the branches and then confirm delete
 #alias gitclb="git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done"
 gitclb () {

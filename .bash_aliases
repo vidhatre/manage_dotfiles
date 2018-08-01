@@ -9,6 +9,13 @@
 #export JAVA_HOME
 #export PATH
 
+# Ads Hub-linux
+export PATH="$PATH:$HOME/Apps/hub-linux/bin/"
+### Load Hub Linux bash completion
+if [ -f $HOME/Apps/hub-linux/etc/hub.bash_completion.sh ] ; then
+    . $HOME/Apps/hub-linux/etc/hub.bash_completion.sh
+fi
+
 #Hadoop home
 export HADOOP_HOME=/opt/hadoop-2.7.3
 

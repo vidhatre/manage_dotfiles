@@ -162,8 +162,12 @@ call plug#begin('~/.vim/plugged')
   " PlugInstall and PlugUpdate will clone fzf in ~/.fzf and run install script
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
+  "Auto complete for python, but can used for other languages refer to github
+  "wiki
+  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 
   "Themes
+  Plug 'lifepillar/vim-solarized8'
   Plug 'chriskempson/base16-vim'
   Plug 'tomasr/molokai'
   Plug 'chriskempson/vim-tomorrow-theme'
@@ -183,7 +187,15 @@ set tabstop=2
 set shiftwidth=2
 " On pressing tab, insert 2 spaces
 set expandtab
+" backspace not working properly in insert mode
+set backspace=indent,eol,start
 
+"====[ YouCompleteMe Config ]=====================
+let g:ycm_server_python_interpreter = 'python'
+let g:ycm_autoclose_preview_window_after_insertion = 1
+
+"====[ Themes ]===================================
+colorscheme solarized8
 
 "====[ Functions ]================================
 " Remove trailing whitespace

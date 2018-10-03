@@ -137,6 +137,8 @@ set textwidth=0 wrapmargin=0
 
 "====[ vim plugins ]==============================
 call plug#begin('~/.vim/plugged')
+  "scratch pad :Scratch
+  Plug 'mtth/scratch.vim'
   " Make sure you use single quotes
   Plug 'vhda/verilog_systemverilog.vim'
   Plug 'https://github.com/rhysd/vim-clang-format.git'
@@ -189,6 +191,11 @@ set shiftwidth=2
 set expandtab
 " backspace not working properly in insert mode
 set backspace=indent,eol,start
+
+"====[ scratch templates ]========================
+let g:scratch_persistence_file = '/home/vidhatre/scratch/scratch.vim'
+let g:scratch_filetype = 'markdown'
+autocmd BufNewFile *Scratch* r /home/vidhatre/.vim/skeletons/new_scratch
 
 "====[ YouCompleteMe Config ]=====================
 let g:ycm_server_python_interpreter = 'python'

@@ -113,6 +113,7 @@ command W  w
 "command Q  q
 "command WQ wq
 "command Wq wq
+:map Y y$
 
 "====[ specific visual settings ]=================
 " seach highlighting
@@ -136,7 +137,10 @@ endif
 set textwidth=0 wrapmargin=0
 
 "====[ vim plugins ]==============================
+packadd! matchit
 call plug#begin('~/.vim/plugged')
+  "Markdown using github's variant
+  Plug 'gabrielelana/vim-markdown'
   "scratch pad :Scratch
   Plug 'mtth/scratch.vim'
   " Make sure you use single quotes
@@ -164,6 +168,9 @@ call plug#begin('~/.vim/plugged')
   " PlugInstall and PlugUpdate will clone fzf in ~/.fzf and run install script
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
+  " Syntax checkers
+  " Plug 'vim-syntastic/syntastic'
+  Plug 'w0rp/ale'
   "Auto complete for python, but can used for other languages refer to github
   "wiki
   Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
@@ -196,10 +203,29 @@ set backspace=indent,eol,start
 let g:scratch_persistence_file = '/home/vidhatre/scratch/scratch.vim'
 let g:scratch_filetype = 'markdown'
 autocmd BufNewFile *Scratch* r /home/vidhatre/.vim/skeletons/new_scratch
+autocmd BufNewFile *.status 0r /home/vidhatre/.vim/skeletons/daily_satus
+
+"====[ ALE Config ]=====================
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+"  "====[ Syntastic Config ]=====================
+"  "Begginer settings from github
+"  set statusline+=%#warningmsg#
+"  set statusline+=%{SyntasticStatuslineFlag()}
+"  set statusline+=%*
+"  
+"  let g:syntastic_always_populate_loc_list = 1
+"  let g:syntastic_auto_loc_list = 1
+"  let g:syntastic_check_on_open = 1
+"  let g:syntastic_check_on_wq = 0
 
 "====[ YouCompleteMe Config ]=====================
 let g:ycm_server_python_interpreter = 'python'
 let g:ycm_autoclose_preview_window_after_insertion = 1
+
+"====[ GitGutter Config]===================================
+" Takes by default 4 secs to update the gutter signs. now 100ms
+set updatetime=100
 
 "====[ Themes ]===================================
 colorscheme solarized8

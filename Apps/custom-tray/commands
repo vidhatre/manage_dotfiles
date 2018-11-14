@@ -1,0 +1,2 @@
+open vim || gvim
+Daily Status || gvim ~/status/$(date +"%y-%m-%d").status

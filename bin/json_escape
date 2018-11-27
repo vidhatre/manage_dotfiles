@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#https://stackoverflow.com/questions/10053678/escaping-characters-in-bash-for-json
+json_escape () {     printf '%s' "$1" | python -c 'import json,sys; print(json.dumps(sys.stdin.read()))'; }

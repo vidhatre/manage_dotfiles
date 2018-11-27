@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# using the aws cluster id get the master's ip address and ssh into it as user 'hadoop'
+# ARG1: cluster_id
+# remaining args appeneded to ssh
+
+if [ $# == 0 ]; then
+  echo -e "Usage:"
+  echo -e "\tsshemr <aws-cluster-id>"
+  echo -e "\tsshemr <aws-cluster-id> -vvv #get full verbose from ssh "
+  echo -e "\tsshemr <aws-cluster-id> 'du -sh /*' #run remote command and print output"
+  exit
+fi
+
+master_ip=$(aws emr describe-cluster --cluster-id $1 --query Cluster.MasterPublicDnsName --output text)
+[ -z ${master_ip} ] && master_ip=$(aws emr describe-cluster --cluster-id $1 --query Cluster.MasterPublicDnsName --output text --profile cust)
+echo "master' ip: ${master_ip}"
+shift
+ssh hadoop@${master_ip} $@

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+fd "\.(verbose|summary|execinfo|physplan|metrics|erroranalysis)$" . -d1 | xargs -r  rm
+fd "_runinfo.txt" . -d1 | xargs -r  rm
+fd "xray_doc_gen_.*docx" . -d1 | xargs -r  rm
+fd "^issue-signature-output-.*" -d1 -td | xargs -r rm -rf 
+fd "^Customer_Cluster_.*.tar.gz$" . -d1 | xargs -r rm

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+[ "$#" == 1 ] && set -- ${1/\// } # regtest/501 -> regtest 501
+[ "$#" != "2" ] && echo "Usage: $0 <job_name> <build_num>" && exit 1
+jobName=$1
+buildNum=$2
+jenkinsUrl=http://axdev-thebe.linux.rocks:8080/
+echo "Getting the full console log for job:$jobName build-number:$buildNum"
+curl -u vidhatre:2486cdcfd9976a5c6f5dd103d8c70051 $jenkinsUrl/job/$jobName/$buildNum/consoleFull > $jobName-$buildNum.log
+echo "Saved to $PWD/$jobName-$buildNum.log"

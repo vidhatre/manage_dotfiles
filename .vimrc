@@ -208,6 +208,7 @@ autocmd BufNewFile *.status 0r /home/vidhatre/.vim/skeletons/daily_satus
 "====[ ALE Config ]=====================
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+let g:ale_fixers= { 'python' : ['autopep8',], 'bash' : ['shfmt',], }
 "  "====[ Syntastic Config ]=====================
 "  "Begginer settings from github
 "  set statusline+=%#warningmsg#

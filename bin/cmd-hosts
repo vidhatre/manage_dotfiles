@@ -12,25 +12,38 @@ server_text="${RED}[%s]${NC}"
 hosts=( axdev-amalthea
         axdev-thebe
         axdev-callisto
-        axdev-ducati
         axdev-europa
         axdev-ganymede
-        axdev-halimede
         axdev-jupiter
         axdev-leda
         axdev-metis
         axdev-moria
         axdev-trex
+        axdev-elara
+        axdev-lightsaber
+        axdev-proteus
+        axdev-kore
+        axdev-kale
+        axdev-lo
+        axdev-dia
+        axdev-halimede
         axdev-alamo
+        axdev-aprilia
+        axdev-neso
+        axdev-ducati
         micron-ubuntu
         micron4u-ubuntu
         axdev-jsc
         axdev-rc1
+        axdev-rc2
+        axdev-rc3
+        axdev-rc4
+        axdev-rc5
         )
 
 printf -v line '=%.0s' {1..50}
 for host in ${hosts[@]}; do
   printf "$server_text %s\n" $host ${line:${#host}}
-  ssh jenkins@${host} $@ || :
+  ssh -t jenkins@${host} $@ || :
 done
 

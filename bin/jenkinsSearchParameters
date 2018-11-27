@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# Copyright 2018, BigStream Solutions, Inc. All rights reserved.
+# Ex:
+#  jenkinsSearchParameters data_parquet RegressionTest-v2 {3330..3342}
+#    Match in RegressionTest-v2/3331
+#    Match in RegressionTest-v2/3333
+#    Match in RegressionTest-v2/3334
+#    Match in RegressionTest-v2/3335
+# Use at own risk
+
+if [ "$1" == "-h"]; then
+  echo "Usage: $0 <search_string> <job_name> <list of build_ids>"
+fi
+string=$1
+job=$2
+shift 2;
+fail=true
+baseURL="${JENKINS_URL:-http://axdev-thebe.linux.rocks:8080/job/}"
+for q in $@; do
+  if curl --silent -u vidhatre:2486cdcfd9976a5c6f5dd103d8c70051  $baseURL/$job/$q/api/json \
+    | jq -e --arg string "$string" \
+      '.actions[] 
+        | select(._class == "hudson.model.ParametersAction") 
+        | .parameters[] 
+        | select(.value | contains($string)?)' > /dev/null ; then
+    echo "Match in $baseURL/$job/$q"
+    fail=false
+  fi
+done
+if  $fail ; then 
+  echo "No matches found"
+fi
+

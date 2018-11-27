@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
+
+if [ "$#"  == "0" ]; then 
+  echo -e  "USAGE: $ azcreds [<script>|set|ss|unset]" \
+         "\n\t set,unset  use EVAL coresspondingly set environment variables. "\
+         "\n\t example: $ azcreds python vm_usage.py"\
+         "\n\t example: $ eval \`azcreds set\`" \
+         "\n\t example: $ eval \`azcreds ss\`"
+elif [ "$#"  == "1" ] && [ "$@" == "set" ]; then 
+  echo "export AZURE_SUBSCRIPTION_ID=a841b95e-53c7-420f-91ec-73547c896edf "\
+       "AZURE_CLIENT_ID=c052b817-5f3a-4d52-be9c-c42b2c54c830 "\
+       "AZURE_CLIENT_SECRET=ukNN7kMf7RI+IHzwr5DtKpQJmsBT7hV/AJbvXzrLgAw= "\
+       "AZURE_TENANT_ID=a3f117a2-0220-4067-92c9-732b74ba3a98 "
+elif [ "$#"  == "1" ] && [ "$@" == "ss" ]; then 
+  echo "export AZURE_SUBSCRIPTION_ID=a841b95e-53c7-420f-91ec-73547c896edf "\
+       "AZURE_CLIENT_ID=4e29cd09-1054-495b-83eb-75238d93c7b2 "\
+       "AZURE_CLIENT_SECRET=kL4dSG+pvgU4yN7D6KGm5OWuckv79HlIKLBxxT1952Q= "\
+       "AZURE_TENANT_ID=a3f117a2-0220-4067-92c9-732b74ba3a98 "
+elif [ "$#"  == "1" ] && [ "$@" == "unset" ]; then 
+  echo "unset AZURE_SUBSCRIPTION_ID AZURE_CLIENT_ID AZURE_CLIENT_SECRET AZURE_TENANT_ID"
+else 
+  #execute single line with the variables only alive for that line
+  AZURE_SUBSCRIPTION_ID=a841b95e-53c7-420f-91ec-73547c896edf \
+  AZURE_CLIENT_ID=c052b817-5f3a-4d52-be9c-c42b2c54c830 \
+  AZURE_CLIENT_SECRET=ukNN7kMf7RI+IHzwr5DtKpQJmsBT7hV/AJbvXzrLgAw=  \
+  AZURE_TENANT_ID=a3f117a2-0220-4067-92c9-732b74ba3a98 \
+  $@
+fi
+
